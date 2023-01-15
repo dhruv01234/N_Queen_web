@@ -97,6 +97,7 @@ cursor:pointer;
     margin: auto;
     margin-top:5%;
     display: flex;
+    flex-wrap:wrap;
     flex-direction: column;
     justify-content: space-around;
 }
@@ -109,7 +110,7 @@ cursor:pointer;
     padding: 3px;
     text-align:center;
     margin: 0 auto;
-    font-size:x-large;
+    font-size: 1em;
 }
 
 #board{

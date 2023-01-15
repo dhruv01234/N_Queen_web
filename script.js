@@ -1,5 +1,6 @@
 const boardSize = localStorage.getItem("boardSize");
 const board = document.getElementById('board');
+
 try {
     const lvl = document.body.getElementsByClassName('levels')[0].children;
     var c1 = lvl[0];
@@ -10,31 +11,24 @@ try {
     var c6 = lvl[5];
     var c7 = lvl[6];
     c1.addEventListener('click',()=>{
-        // console.log(c1.id);
         setboardsize(c1.id);
     })
     c2.addEventListener('click',()=>{
-        // console.log(c2.id);
         setboardsize(c2.id);
     })
     c3.addEventListener('click',()=>{
-        // console.log(c3.id);
         setboardsize(c3.id);
     })
     c4.addEventListener('click',()=>{
-        // console.log(c4.id);
         setboardsize(c4.id);
     })
     c5.addEventListener('click',()=>{
-        // console.log(c5.id);
         setboardsize(c5.id);
     })
     c6.addEventListener('click',()=>{
-        // console.log(c6.id);
         setboardsize(c6.id);
     })
     c7.addEventListener('click',()=>{
-        // console.log(c7.id);
         setboardsize(c7.id);
     })    
 } 
@@ -49,8 +43,8 @@ function setboardsize(i){
     window.location.href = 'play.html';
     localStorage.setItem('boardSize',i);
 }
-
-
+try {
+    
 for(var i =0;i<boardSize;i++){
     board.appendChild(document.createElement('div'));
     var w = board.offsetWidth/boardSize;
@@ -71,3 +65,8 @@ for(var i =0;i<boardSize;i++){
     `
     );
 }
+
+} catch (error) {
+    
+}
+
