@@ -110,7 +110,8 @@ cursor:pointer;
     padding: 3px;
     text-align:center;
     margin: 0 auto;
-    font-size: 1em;
+    font-size: 1.5em;
+
 }
 
 #board{
@@ -119,4 +120,11 @@ cursor:pointer;
     margin: auto;
     margin-top: 20px;
     display:grid;
+}
+
+img{
+    position: absolute;
+    width: 100px;
+    margin: auto;
+    align-self: baseline;
 }
