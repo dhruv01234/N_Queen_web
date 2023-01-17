@@ -1,5 +1,71 @@
 const boardSize = localStorage.getItem("boardSize");
 const board = document.getElementById('board');
+const btn = document.getElementById('btn');
+
+btn.addEventListener('click',()=>{
+    var nQueen = new Array(boardSize);
+    var counter = 0;
+for(var i =0;i<boardSize;i++){
+    nQueen[i] = new Array(boardSize);
+    for (var j = 0; j < boardSize; j++){
+        if(board.children[i].children[j].innerHTML==""){
+            nQueen[i][j] = false;
+        }
+        else{
+            nQueen[i][j] = true;
+            counter++;
+        }
+    }
+}
+if(counter<boardSize){
+    alert(`place ${boardSize} Queen in total`);
+}
+else{
+var a = true;
+for(var i =0;i<boardSize;i++){
+    var y = 0;
+    for (var j = 0; j < boardSize; j++){
+        if(nQueen[i][j]==true){
+            var res = checkNqueen(nQueen,boardSize,i,j);
+            if(res==true){
+                y=1;
+                alert('wrong ans');
+                a = false;
+                break;
+            }
+        }
+    }
+    if(y==1) break;
+}
+
+if(a==true) alert('correct ans');
+
+for(var i =0;i<boardSize;i++){
+    for (var j = 0; j < boardSize; j++){
+        board.children[i].children[j].innerHTML="";
+    }
+}
+}
+});
+
+function checkNqueen(nQueen,n,i,j){
+    for(var k=0;k<n;k++){
+        if(k!=j && nQueen[i][k]==true) return true;
+    }
+    for(var k=0;k<n;k++){
+        if(k!=i && nQueen[k][j]==true) return true;
+    }
+    var a = i+1;
+    var b=j+1;
+    while(a<n && b<n) if(nQueen[a++][b++]==true) return true;
+    a = i+1,b=j-1;
+    while(a<n && b>=0) if(nQueen[a++][b--]==true) return true;
+    a = i-1,b=j-1;
+    while(a>=0 && b>=0) if(nQueen[a--][b--]==true) return true;
+    a = i-1,b=j+1;
+    while(a>=0 && b<n) if(nQueen[a--][b++]==true) return true;
+    return false;
+}
 
 try {
     const lvl = document.body.getElementsByClassName('levels')[0].children;
@@ -55,7 +121,6 @@ for(var i =0;i<boardSize;i++){
         var box = document.createElement('div');
         box.id = i*boardSize+j;
         board.children[i].appendChild(box);
-        // board.children[i].children[j].appendChild(img);
         board.children[i].children[j].setAttribute(`style`,
         `
         width:${w}px;
@@ -73,13 +138,7 @@ for(var i =0;i<boardSize;i++){
     
 }
 
-var nQueen = new Array(boardSize);
-for(var i =0;i<boardSize;i++){
-    nQueen[i] = new Array(boardSize);
-    for (var j = 0; j < boardSize; j++){
-        nQueen[i][j] = false;
-    }
-}
+
 try {
     board.addEventListener('click',(e)=>{
         var id = e.target.id;
