@@ -2,51 +2,55 @@ const boardSize = localStorage.getItem("boardSize");
 const board = document.getElementById('board');
 const btn = document.getElementById('btn');
 
-btn.addEventListener('click',()=>{
-    var nQueen = new Array(boardSize);
-    var counter = 0;
-for(var i =0;i<boardSize;i++){
-    nQueen[i] = new Array(boardSize);
-    for (var j = 0; j < boardSize; j++){
-        if(board.children[i].children[j].innerHTML==""){
-            nQueen[i][j] = false;
-        }
-        else{
-            nQueen[i][j] = true;
-            counter++;
-        }
-    }
-}
-if(counter<boardSize){
-    alert(`place ${boardSize} Queen in total`);
-}
-else{
-var a = true;
-for(var i =0;i<boardSize;i++){
-    var y = 0;
-    for (var j = 0; j < boardSize; j++){
-        if(nQueen[i][j]==true){
-            var res = checkNqueen(nQueen,boardSize,i,j);
-            if(res==true){
-                y=1;
-                alert('wrong ans');
-                a = false;
-                break;
+try {
+    btn.addEventListener('click',()=>{
+        var nQueen = new Array(boardSize);
+        var counter = 0;
+    for(var i =0;i<boardSize;i++){
+        nQueen[i] = new Array(boardSize);
+        for (var j = 0; j < boardSize; j++){
+            if(board.children[i].children[j].innerHTML==""){
+                nQueen[i][j] = false;
+            }
+            else{
+                nQueen[i][j] = true;
+                counter++;
             }
         }
     }
-    if(y==1) break;
-}
-
-if(a==true) alert('correct ans');
-
-for(var i =0;i<boardSize;i++){
-    for (var j = 0; j < boardSize; j++){
-        board.children[i].children[j].innerHTML="";
+    if(counter<boardSize){
+        alert(`place ${boardSize} Queen in total`);
     }
+    else{
+    var a = true;
+    for(var i =0;i<boardSize;i++){
+        var y = 0;
+        for (var j = 0; j < boardSize; j++){
+            if(nQueen[i][j]==true){
+                var res = checkNqueen(nQueen,boardSize,i,j);
+                if(res==true){
+                    y=1;
+                    alert('wrong ans');
+                    a = false;
+                    break;
+                }
+            }
+        }
+        if(y==1) break;
+    }
+    
+    if(a==true) alert('correct ans');
+    
+    for(var i =0;i<boardSize;i++){
+        for (var j = 0; j < boardSize; j++){
+            board.children[i].children[j].innerHTML="";
+        }
+    }
+    }
+    });
+} catch (error) {
+    
 }
-}
-});
 
 function checkNqueen(nQueen,n,i,j){
     for(var k=0;k<n;k++){
