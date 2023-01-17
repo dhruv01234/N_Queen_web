@@ -128,3 +128,26 @@ img{
     margin: auto;
     align-self: baseline;
 }
+
+#btn{
+    width: 10vh;
+    height: 5vh;
+    padding: 4px;
+    border-radius: 8px;
+    background-color: teal;
+    color: aliceblue;
+    margin-top: 20px;
+    font-size: 1em;
+    transition: 2s;
+}
+
+#btn:hover{
+    box-shadow:0px 0px 8px 12px rgb(85, 131, 131);
+    size: 0ch;
+}
+
+.contbtn{
+    width: fit-content;
+    margin: auto;
+
+}
